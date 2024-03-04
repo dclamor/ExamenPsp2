@@ -1,0 +1,56 @@
+Contar consonantes
+import java.util.regex.*;
+
+public class Main {
+    public static void main(String[] args) {
+        String frase = "Esta es una frase de ejemplo";
+        int contadorConsonantes = contarConsonantes(frase);
+        System.out.println("Número de consonantes: " + contadorConsonantes);
+    }
+
+    public static int contarConsonantes(String frase) {
+        // Expresión regular para encontrar consonantes (cualquier carácter que no sea vocal ni espacio en blanco)
+        String regex = "[^aeiou\\s]";
+        Pattern pattern = Pattern.compile(regex, Pattern.CASE_INSENSITIVE);
+        Matcher matcher = pattern.matcher(frase);
+
+        int contador = 0;
+        while (matcher.find()) {
+            contador++;
+        }
+        return contador;
+    }
+}
+obtener consonantes
+public static String obtenerConsonantes(String frase) {
+    // Expresión regular para encontrar consonantes (cualquier carácter que no sea vocal ni espacio en blanco)
+    String regex = "[^aeiou\\s]";
+    Pattern pattern = Pattern.compile(regex, Pattern.CASE_INSENSITIVE);
+    Matcher matcher = pattern.matcher(frase);
+
+    StringBuilder consonantes = new StringBuilder();
+    while (matcher.find()) {
+        consonantes.append(matcher.group());
+    }
+    return consonantes.toString();
+}
+numeros del 1 al 24
+public static int contarNumeros(String texto) {
+    String regex = "\\b(?:[1-9]|1\\d|2[0-4])\\b";
+    Pattern pattern = Pattern.compile(regex);
+    Matcher matcher = pattern.matcher(texto);
+
+    int contador = 0;
+    while (matcher.find()) {
+        contador++;
+    }
+    return contador;
+}
+En esta expresión regular:
+
+\\b coincide con el límite de palabras, lo que asegura que solo se encuentren números individuales y no partes de números más grandes.
+(?: ... ) define un grupo de no captura para las alternativas.
+[1-9] coincide con cualquier dígito del 1 al 9.
+1\\d coincide con números del 10 al 19 (1 seguido de cualquier dígito).
+2[0-4] coincide con números del 20 al 24 (2 seguido de un dígito del 0 al 4).
+De esta manera, esta expresión regular coincidirá con cada número entre 1 y 24 en la cadena de texto proporcionada. La función contarNumeros simplemente cuenta cuántas veces se encuentran estas coincidencias en la cadena de texto.
